@@ -1,1 +1,0 @@
-# This file provides documentation regarding the data used in the project, including formats and sources.
