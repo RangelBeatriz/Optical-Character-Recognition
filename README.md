@@ -14,8 +14,6 @@ ann-project
 ├── ann
 │   ├── ocr.py          # Implementation of the ANN trained via backpropagation
 │   └── neural_network_design.py  # Design and architecture of the ANN
-├── data
-│   └── README.md       # Documentation regarding the data used in the project
 ├── tests
 │   └── test_ann.py     # Unit tests for the ANN model
 ├── requirements.txt     # List of Python dependencies
