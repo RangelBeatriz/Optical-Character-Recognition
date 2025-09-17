@@ -39,6 +39,15 @@ var ocrDemo = {
         canvas.isDrawing = false;
     },
 
+    fillSquare: function(ctx, x, y) {
+        var xPixel = Math.floor(x / this.PIXEL_WIDTH);
+        var yPixel = Math.floor(y / this.PIXEL_WIDTH);
+        this.data[((xPixel -1) * this.TRANSLATED_WIDTH + yPixel) - 1] = 1;
+
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(xPixel * this.PIXEL_WIDTH, yPixel * this.PIXEL_WIDTH,
+            this.PIXEL_WIDTH, this.PIXEL_WIDTH);
+    }
 
 }
 
