@@ -47,8 +47,32 @@ var ocrDemo = {
         ctx.fillStyle = '#ffffff';
         ctx.fillRect(xPixel * this.PIXEL_WIDTH, yPixel * this.PIXEL_WIDTH,
             this.PIXEL_WIDTH, this.PIXEL_WIDTH);
+    },
+
+    train: function() {
+        var digitVal = document.getElementById("digit").value;
+
+        if (!digitVal || this.data.indexOf(1) < 0) {
+            alert("Please type and draw a digit value in order to train the network.");
+            return;
+        }
+
+        this.trainArray.push({"y0": this.data, "label": parseInt(digitVal)});
+        this.trainingRequestCount++;
+
+        if (this.trainingRequestCount == this.BATCH_SIZE) {
+            alert("Sending training data to server.");
+
+            var json = {
+                trainArray: this.trainArray,
+                train: true
+            };
+
+            this.sendData(json);
+            this.trainingRequestCount = 0;
+            this.trainArray = [];
+        }
+
     }
 
 }
-
-
