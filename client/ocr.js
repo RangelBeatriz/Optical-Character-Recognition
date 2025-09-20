@@ -87,6 +87,19 @@ var ocrDemo = {
         };
 
         this.sendData(json);
-    }
+    },
+
+    receiveResponse: function(xmlHttp) {
+        if (xmlHttp.status != 200) {
+            alert("Server returned status: " + xmlHttp.status);
+            return;
+        }
+
+        var responseJSON = JSON.parse(xmlHttp.responseText);
+
+        if (xmlHttp.responseText && responseJSON.type == "test") {
+            alert("The neural network predicts you wrote a \'" + responseJSON.result + '\'');
+        }
+    },
 
 }
