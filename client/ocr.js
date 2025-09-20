@@ -73,6 +73,33 @@ var ocrDemo = {
             this.trainArray = [];
         }
 
-    }
+    },
+
+    test: function() {
+        if (this.data.indexOf(1) < 0) {
+            alert("Please draw a digit value in order to test the network.");
+            return;
+        }
+
+        var json = {
+            image: this.data,
+            predict: true
+        };
+
+        this.sendData(json);
+    },
+
+    receiveResponse: function(xmlHttp) {
+        if (xmlHttp.status != 200) {
+            alert("Server returned status: " + xmlHttp.status);
+            return;
+        }
+
+        var responseJSON = JSON.parse(xmlHttp.responseText);
+
+        if (xmlHttp.responseText && responseJSON.type == "test") {
+            alert("The neural network predicts you wrote a \'" + responseJSON.result + '\'');
+        }
+    },
 
 }
